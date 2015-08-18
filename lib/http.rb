@@ -25,9 +25,9 @@ module NetRecorder
           end
           
           if existing_fake
-            existing_fake[Fake::RESPONSE][scope][:response] << {:response => response}
+            existing_fake[Fake::RESPONSE][scope][:response] << {:response => response, :request => req}
           else
-            @@fakes << [path, {scope => {:method => req.method, :response => [{:response => response}]}}]
+            @@fakes << [path, {scope => {:method => req.method, :response => [{:response => response, :request => req}]}}]
           end
 
           yield response if block
